@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['Satoshi', 'system-ui', '-apple-system', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],
