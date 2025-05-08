@@ -1,7 +1,8 @@
+// src/components/common/Button.tsx
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'accent';
   size?: 'sm' | 'md' | 'lg';
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -16,12 +17,14 @@ const Button: React.FC<ButtonProps> = ({
   className,
   ...props
 }) => {
-  const baseStyle = "font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-150 ease-in-out inline-flex items-center justify-center";
+  const baseStyle = "font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-150 ease-in-out inline-flex items-center justify-center";
+  // 테마 색상 적용
   const variantStyles = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
-    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400",
-    outline: "border border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500",
-    ghost: "text-blue-600 hover:bg-blue-50 focus:ring-blue-500",
+    primary: "bg-infocus-primary text-white hover:bg-opacity-90 focus:ring-infocus-primary rounded-md",
+    secondary: "bg-infocus-divider text-infocus-text hover:bg-opacity-80 focus:ring-infocus-muted rounded-md",
+    outline: "border border-infocus-primary text-infocus-primary hover:bg-infocus-primary/10 focus:ring-infocus-primary rounded-md",
+    ghost: "text-infocus-primary hover:bg-infocus-primary/10 focus:ring-infocus-primary rounded-md",
+    accent: "bg-infocus-accent text-infocus-primary hover:bg-opacity-90 focus:ring-infocus-accent rounded-md",
   };
   const sizeStyles = {
     sm: "px-3 py-1.5 text-sm",

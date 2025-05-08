@@ -1,3 +1,4 @@
+// src/components/common/IconButton.tsx
 import React from 'react';
 
 interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,7 +10,8 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, className, ariaLabel, ...
   return (
     <button
       aria-label={ariaLabel}
-      className={`p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors ${className || ''}`}
+      // 테마 색상에 맞게 hover/focus 상태 조정
+      className={`p-2 rounded-full text-infocus-subtext hover:bg-infocus-divider focus:outline-none focus:ring-2 focus:ring-infocus-primary/50 transition-colors ${className || ''}`}
       {...props}
     >
       {icon}

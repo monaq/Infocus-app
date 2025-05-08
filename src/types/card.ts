@@ -6,4 +6,10 @@ export type Card = {
   insight: string;
   imageUrl?: string;
   createdAt?: string;
+  isSaved?: boolean;
 };
+// src/types/card.ts
+export interface InsightTag {
+  id: string;
+  name: string;
+}

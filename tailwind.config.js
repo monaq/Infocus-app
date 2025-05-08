@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -21,7 +20,6 @@ export default {
           text: '#1A1A1A',
           subtext: '#5E5E5E',
           muted: '#9CA3AF',
-
           // State
           success: '#1BA784',
           error: '#EF4444',
@@ -30,10 +28,11 @@ export default {
       },
       fontFamily: {
         sans: [
-          {
-            fontFamily: 'Pretendard, Satoshi, system-ui, -apple-system, sans-serif',
-            fontFeatureSettings: '"ss01"',
-          },
+          'Pretendard',
+          'Satoshi',
+          'system-ui',
+          '-apple-system',
+          'sans-serif'
         ],
       },
       borderRadius: {

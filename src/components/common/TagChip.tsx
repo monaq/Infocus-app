@@ -1,28 +1,27 @@
 // src/components/common/TagChip.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 interface TagChipProps {
   tag: string;
   onClick?: (tag: string) => void;
-  to?: string; // 클릭 시 이동할 경로 (선택)
   className?: string;
+  isActive?: boolean; // 활성 상태 표시를 위한 prop 추가
 }
 
-const TagChip: React.FC<TagChipProps> = ({ tag, onClick, to, className }) => {
-  const content = (
+const TagChip: React.FC<TagChipProps> = ({ tag, onClick, className, isActive }) => {
+  const baseClasses = "px-3 py-1 text-xs sm:text-sm rounded-full cursor-pointer hover:opacity-80 transition-opacity";
+  const activeClasses = isActive
+    ? "bg-infocus-primary text-white"
+    : "bg-infocus-accent/30 text-infocus-primary"; // accent 색상을 활용하거나, 테마에 맞는 다른 색상 사용
+
+  return (
     <span
-      className={`px-3 py-1 text-xs sm:text-sm bg-sky-100 text-sky-700 rounded-full cursor-pointer hover:bg-sky-200 transition-colors ${className || ''}`}
+      className={`${baseClasses} ${activeClasses} ${className || ''}`}
       onClick={() => onClick && onClick(tag)}
     >
       #{tag}
     </span>
   );
-
-  if (to) {
-    return <Link to={to}>{content}</Link>;
-  }
-  return content;
 };
 
 export default TagChip;
