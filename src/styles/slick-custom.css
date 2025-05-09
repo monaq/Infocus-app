@@ -31,7 +31,6 @@
 
 .insight-card-slider .slick-slide {
   padding: 0 8px;
-  opacity: 0.5;
   transform: scale(0.9);
   transition: all 0.3s ease;
 }

@@ -38,6 +38,7 @@ const InsightCardList: React.FC<InsightCardListProps> = ({
     className: "insight-slider",
     centerMode: true,
     centerPadding: '0',
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 1024,
