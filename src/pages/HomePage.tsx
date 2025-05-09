@@ -8,7 +8,7 @@ import Button from '../components/common/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import mockData from '../mocks/mock_cards.json';
 
-// ... (로컬 스토리지 헬퍼, fetchHomePageInsights 함수는 이전과 동일)
+// ... (로컬 스토리지 헬퍼)
 const getSavedCardIdsFromStorage = (): string[] => JSON.parse(localStorage.getItem('savedInfocusCardIds') || '[]');
 const toggleSaveCardInStorage = (cardId: string, currentIsSaved: boolean): void => {
   let savedIds = getSavedCardIdsFromStorage();
@@ -55,7 +55,8 @@ const HomePage: React.FC = () => {
       const data = await fetchHomePageInsights(topic);
       const currentSavedIds = getSavedCardIdsFromStorage();
       setInsights(data.map(card => ({ ...card, isSaved: currentSavedIds.includes(card.id) })));
-    } catch (err) { setError('인사이트를 불러오는 데 실패했습니다.'); console.error(err);
+    } catch (err) {
+      setError('인사이트를 불러오는 데 실패했습니다.'); console.error(err);
     } finally { setIsLoading(false); }
   }, []);
 
@@ -72,10 +73,12 @@ const HomePage: React.FC = () => {
 
   const handleSaveToggle = (cardId: string, currentIsSaved: boolean) => {
     toggleSaveCardInStorage(cardId, currentIsSaved);
-    setInsights(prev => prev.map(card => card.id === cardId ? { ...card, isSaved: !currentIsSaved } : card ));
+    setInsights(prev => prev.map(card => card.id === cardId ? { ...card, isSaved: !currentIsSaved } : card));
   };
 
-  const handleShare = async (cardId: string) => { /* ... (이전과 동일) ... */ };
+  const handleShare = async (cardId: string) => {
+    // TODO: 공유 기능 구현
+  };
 
   const handleTopicSelect = (topic: string) => {
     const newTopic = selectedTopic === topic ? undefined : topic;
@@ -89,6 +92,15 @@ const HomePage: React.FC = () => {
     <div className="pb-20 bg-infocus-canvas min-h-screen"> {/* 페이지 배경색 */}
       <AppHeader title="오늘의 Infocus" />
       <div className="container mx-auto p-3 sm:p-4">
+        <InsightCardList
+          cards={insights}
+          isLoading={isLoading}
+          error={error}
+          onSaveToggle={handleSaveToggle}
+          onShare={handleShare}
+          onTagClick={handleTopicSelect}
+          onViewDetails={handleViewDetails}
+        />
         <section className="mb-4 sm:mb-6">
           {/* 테마 텍스트 색상 적용 */}
           <h2 className="text-sm font-medium mb-3 text-infocus-subtext">주제별로 보기:</h2>
@@ -110,15 +122,6 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-        <InsightCardList
-          cards={insights}
-          isLoading={isLoading}
-          error={error}
-          onSaveToggle={handleSaveToggle}
-          onShare={handleShare}
-          onTagClick={handleTopicSelect}
-          onViewDetails={handleViewDetails}
-        />
       </div>
     </div>
   );
