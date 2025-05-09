@@ -9,10 +9,12 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
+const HomeIcon = <img src="/logo-icon.png" alt="home" className="w-6 h-6" />;
+
 const navItems: NavItem[] = [
-  { path: '/', label: '홈', icon: <Home size={22} /> },
   { path: '/saved', label: '저장함', icon: <Bookmark size={22} /> },
-  { path: '/generate', label: '요약', icon: <Edit3 size={22} /> },
+  { path: '/', label: '홈', icon: HomeIcon },
+  { path: '/generate', label: '만들기', icon: <Edit3 size={22} /> },
 ];
 
 const BottomNavigationBar: React.FC = () => {
@@ -26,15 +28,14 @@ const BottomNavigationBar: React.FC = () => {
             to={item.path}
             end
             className={({ isActive }) =>
-              `flex flex-col items-center justify-center p-1 w-1/4 transition-colors ${
-                isActive
-                  ? 'text-infocus-primary' // 활성 탭 색상
-                  : 'text-infocus-muted hover:text-infocus-subtext'
+              `flex flex-col items-center justify-center p-1 w-1/4 transition-colors ${isActive
+                ? 'text-infocus-primary' // 활성 탭 색상
+                : 'text-infocus-muted hover:text-infocus-subtext'
               }`
             }
           >
             {item.icon}
-            <span className={`text-xs mt-1 ${item.path === '/' && 'font-medium' /* 예시: 홈 탭 글꼴 강조 */ }`}>{item.label}</span>
+            <span className={`text-xs mt-1 ${item.path === '/' && 'font-medium' /* 예시: 홈 탭 글꼴 강조 */}`}>{item.label}</span>
           </NavLink>
         ))}
       </div>

@@ -1,4 +1,5 @@
 // src/layouts/MainLayout.tsx
+import BottomNavigationBar from '@/components/layout/BottomNavigationBar';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -9,7 +10,7 @@ const MainLayout: React.FC = () => {
       <main className="min-h-screen">
         <Outlet />
       </main>
-      {/* <BottomNavigationBar /> */}
+      <BottomNavigationBar />
     </div>
   );
 };
