@@ -1,0 +1,51 @@
+.insight-card-slider .slick-dots {
+  bottom: -35px;
+}
+
+.insight-card-slider .slick-dots li button:before {
+  color: #CBD5E1;
+}
+
+.insight-card-slider .slick-dots li.slick-active button:before {
+  color: #3B82F6;
+}
+
+.insight-card-slider .slick-prev,
+.insight-card-slider .slick-next {
+  z-index: 1;
+}
+
+.insight-card-slider .slick-prev {
+  left: 10px;
+}
+
+.insight-card-slider .slick-next {
+  right: 10px;
+}
+
+.insight-card-slider .slick-prev:before,
+.insight-card-slider .slick-next:before {
+  color: #3B82F6;
+  font-size: 24px;
+}
+
+.insight-card-slider .slick-slide {
+  padding: 0 8px;
+  opacity: 0.5;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.insight-card-slider .slick-center {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.insight-card-slider .slick-list {
+  margin: 0 -8px;
+}
+
+.insight-card-slider .slick-track {
+  display: flex;
+  align-items: center;
+} 

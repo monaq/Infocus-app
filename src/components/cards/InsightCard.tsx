@@ -24,7 +24,7 @@ const InsightCard: React.FC<InsightCardProps> = ({
 }) => {
   const { id, title, insight, tags, imageUrl, isSaved, source, createdAt } = card;
 
-  const insightDisplay = insight;
+  const insightDisplay = isDetailedView ? insight : insight.split('\n').slice(0, 3).join('\n');
 
   const formattedDate = createdAt ? new Date(createdAt).toLocaleDateString('ko-KR', {
     year: 'numeric', month: 'short', day: 'numeric'
@@ -45,10 +45,10 @@ const InsightCard: React.FC<InsightCardProps> = ({
         >
           {isDetailedView
             ? insight.split('\n').map((line, idx) => (
-                <p key={idx} className="my-1 text-infocus-subtext"> {/* prose 스타일 상속 주의, 직접 색상 지정 */}
-                  {line.startsWith('- ') || line.startsWith('• ') ? `• ${line.substring(2)}` : line}
-                </p>
-              ))
+              <p key={idx} className="my-1 text-infocus-subtext"> {/* prose 스타일 상속 주의, 직접 색상 지정 */}
+                {line.startsWith('- ') || line.startsWith('• ') ? `• ${line.substring(2)}` : line}
+              </p>
+            ))
             : insightDisplay}
         </div>
 
@@ -63,8 +63,8 @@ const InsightCard: React.FC<InsightCardProps> = ({
             ))}
           </div>
         )}
-         {formattedDate && !isDetailedView && (
-            <p className="text-xs text-infocus-muted mt-2 mb-1">{formattedDate}</p>
+        {formattedDate && !isDetailedView && (
+          <p className="text-xs text-infocus-muted mt-2 mb-1">{formattedDate}</p>
         )}
 
         <div className="mt-auto flex items-center justify-between pt-3 border-t border-infocus-divider">

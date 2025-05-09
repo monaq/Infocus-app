@@ -15,6 +15,12 @@ const HomePage: React.FC = () => {
   const { insights, isLoading, error, loadInsights, availableTopics } = useInsights(selectedTopic);
   const { savedCards, handleSaveToggle } = useSavedCards(insights);
 
+  const defaultUserInfo = {
+    name: "홍길동",
+    email: "hong@example.com",
+    profileImage: ""
+  }
+
   React.useEffect(() => {
     loadInsights(selectedTopic);
   }, [loadInsights, selectedTopic]);
@@ -27,17 +33,20 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="pb-20 bg-infocus-canvas min-h-screen">
-      <AppHeader title="오늘의 Infocus" />
+      <AppHeader userInfo={{ ...defaultUserInfo }} />
       <div className="container mx-auto p-3 sm:p-4">
-        <InsightCardList
-          cards={insights}
-          isLoading={isLoading}
-          error={error}
-          onSaveToggle={handleSaveToggle}
-          onShare={handleShare}
-          onTagClick={handleTopicSelect}
-          onViewDetails={handleViewDetails}
-        />
+        <section className="mb-4 sm:mb-6">
+          <InsightCardList
+            cards={insights}
+            isLoading={isLoading}
+            error={error}
+            onSaveToggle={handleSaveToggle}
+            onShare={handleShare}
+            onTagClick={handleTopicSelect}
+            onViewDetails={handleViewDetails}
+          />
+        </section>
+
         <section className="mb-4 sm:mb-6">
           <h2 className="text-sm font-medium mb-3 text-infocus-subtext">주제별로 보기:</h2>
           <div className="flex flex-wrap gap-2 items-center">
