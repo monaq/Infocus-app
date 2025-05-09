@@ -5,7 +5,7 @@ export type Card = {
   tags: string[];
   insight: string;
   imageUrl?: string;
-  createdAt?: string;
+  createdAt: string;
   isSaved?: boolean;
 };
 // src/types/card.ts

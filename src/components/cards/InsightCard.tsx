@@ -1,8 +1,8 @@
 // src/components/cards/InsightCard.tsx
 import React from 'react';
-import { Card as InsightCardData } from '../../types/card';
-import TagChip from '../common/TagChip';
-import IconButton from '../common/IconButton';
+import { Card as InsightCardData } from '@/types/card';
+import TagChip from '@/components/common/TagChip';
+import IconButton from '@/components/common/IconButton';
 import { Bookmark, Share2, ExternalLink } from 'lucide-react';
 
 interface InsightCardProps {
@@ -73,7 +73,6 @@ const InsightCard: React.FC<InsightCardProps> = ({
               icon={<Bookmark fill={isSaved ? 'currentColor' : 'none'} size={20} />}
               ariaLabel={isSaved ? '저장 취소' : '저장하기'}
               onClick={() => onSaveToggle(id, !!isSaved)}
-              // 저장 아이콘 활성/비활성 시 테마 색상 적용
               className={isSaved ? 'text-infocus-accent' : 'text-infocus-muted'}
             >
               <Bookmark fill={isSaved ? 'currentColor' : 'none'} size={20} />
@@ -87,14 +86,6 @@ const InsightCard: React.FC<InsightCardProps> = ({
               <Share2 size={20} />
             </IconButton>
           </div>
-          {!isDetailedView && onViewDetails && (
-            <button
-              onClick={() => onViewDetails(id)}
-              className="text-xs sm:text-sm text-infocus-primary hover:underline inline-flex items-center"
-            >
-              더 보기 <ExternalLink size={14} className="ml-1" />
-            </button>
-          )}
         </div>
       </div>
     </article>

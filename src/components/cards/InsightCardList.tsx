@@ -1,6 +1,6 @@
 // src/components/cards/InsightCardList.tsx
 import React from 'react';
-import { Card as InsightCardData } from '../../types/card';
+import { Card as InsightCardData } from '@/types/card';
 import InsightCard from './InsightCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -32,7 +32,7 @@ const InsightCardList: React.FC<InsightCardListProps> = ({
     dots: false,
     infinite: false,
     speed: 300,
-    slidesToShow: 1.3,
+    slidesToShow: 1.2,
     slidesToScroll: 1,
     arrows: false,
     className: "insight-slider",
@@ -42,7 +42,7 @@ const InsightCardList: React.FC<InsightCardListProps> = ({
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1.3,
+          slidesToShow: 1.2,
           slidesToScroll: 1,
           centerMode: true,
         }
@@ -50,7 +50,7 @@ const InsightCardList: React.FC<InsightCardListProps> = ({
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1.3,
+          slidesToShow: 1.2,
           slidesToScroll: 1,
           arrows: false,
           centerMode: true,

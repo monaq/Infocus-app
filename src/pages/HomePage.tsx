@@ -1,13 +1,13 @@
 // src/pages/HomePage.tsx
 import React from 'react';
-import AppHeader from '../components/layout/AppHeader';
-import InsightCardList from '../components/cards/InsightCardList';
-import TagChip from '../components/common/TagChip';
-import Button from '../components/common/Button';
+import AppHeader from '@/components/layout/AppHeader';
+import InsightCardList from '@/components/cards/InsightCardList';
+import TagChip from '@/components/common/TagChip';
+import Button from '@/components/common/Button';
 import { useNavigate } from 'react-router-dom';
-import { useInsights } from '../hooks/useInsights';
-import { useSavedCards } from '../hooks/useSavedCards';
-import { useTopicSelection } from '../hooks/useTopicSelection';
+import { useInsights } from '@/hooks/useInsights';
+import { useSavedCards } from '@/hooks/useSavedCards';
+import { useTopicSelection } from '@/hooks/useTopicSelection';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
       <div className="container mx-auto p-3 sm:p-4">
         <section className="mb-4 sm:mb-6">
           <InsightCardList
-            cards={insights}
+            cards={insights.map(card => ({ ...card, isSaved: savedCards.some(savedCard => savedCard.id === card.id) }))}
             isLoading={isLoading}
             error={error}
             onSaveToggle={handleSaveToggle}
@@ -56,10 +56,11 @@ const HomePage: React.FC = () => {
                 tag={topic}
                 onClick={() => handleTopicSelect(topic)}
                 isActive={selectedTopic === topic}
+                className="text-base px-3 py-2 rounded-full"
               />
             ))}
             {selectedTopic && (
-              <Button variant="ghost" size="sm" onClick={() => handleTopicSelect(selectedTopic)} className="text-xs !px-2 !py-1">
+              <Button variant="ghost" size="sm" onClick={() => handleTopicSelect(selectedTopic)} className="text-base px-4 py-2">
                 선택 해제
               </Button>
             )}

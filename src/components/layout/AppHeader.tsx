@@ -1,6 +1,6 @@
 // src/components/layout/AppHeader.tsx
 import React from 'react';
-import defaultProfileImage from '../../assets/user-image.png';
+import defaultProfileImage from '@/assets/user-image.png';
 
 interface AppHeaderProps {
   userInfo: {
@@ -8,9 +8,10 @@ interface AppHeaderProps {
     email: string;
     profileImage: string;
   };
+  title?: string;
 }
 
-const AppHeader: React.FC<AppHeaderProps> = ({ userInfo }) => {
+const AppHeader: React.FC<AppHeaderProps> = ({ userInfo, title }) => {
   return (
     // 테마 색상 적용
     <header className="bg-infocus-surface shadow-sm sticky top-0 z-50 border-b border-infocus-divider">
@@ -21,7 +22,8 @@ const AppHeader: React.FC<AppHeaderProps> = ({ userInfo }) => {
           ) : (
             <img src={defaultProfileImage} alt="Profile" className="w-8 h-8 rounded-full" />
           )}
-          <span className="text-sm font-bold text-infocus-primary">{userInfo.name}</span>
+
+          {title ? <span className="text-sm font-bold text-infocus-primary">{title}</span> : <span className="text-sm font-bold text-infocus-primary">{userInfo.name}</span>}
         </div>
       </div>
     </header>
