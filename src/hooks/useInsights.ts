@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Card as InsightCardData } from '../types/card';
 import mockData from '../mocks/mock_cards.json';
-import { log } from 'console';
 
 const fetchHomePageInsights = async (topic?: string): Promise<InsightCardData[]> => {
   return new Promise(resolve => {
