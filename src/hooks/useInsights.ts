@@ -1,6 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Card as InsightCardData } from '../types/card';
 import mockData from '../mocks/mock_cards.json';
+import { log } from 'console';
 
 const fetchHomePageInsights = async (topic?: string): Promise<InsightCardData[]> => {
   return new Promise(resolve => {
@@ -27,6 +28,7 @@ export const useInsights = (initialTopic?: string) => {
     try {
       const data = await fetchHomePageInsights(topic);
       setInsights(data);
+      console.log(data);
     } catch (err) {
       setError('인사이트를 불러오는 데 실패했습니다.');
       console.error(err);
@@ -34,6 +36,10 @@ export const useInsights = (initialTopic?: string) => {
       setIsLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    loadInsights(initialTopic);
+  }, [loadInsights, initialTopic]);
 
   const availableTopics = [...new Set(mockData.flatMap(card => card.tags))].sort();
 

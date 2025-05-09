@@ -12,7 +12,7 @@ import { useTopicSelection } from '../hooks/useTopicSelection';
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { selectedTopic, handleTopicSelect } = useTopicSelection();
-  const { insights, isLoading, error, loadInsights, availableTopics } = useInsights();
+  const { insights, isLoading, error, loadInsights, availableTopics } = useInsights(selectedTopic);
   const { savedCards, handleSaveToggle } = useSavedCards(insights);
 
   React.useEffect(() => {
@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
       <AppHeader title="오늘의 Infocus" />
       <div className="container mx-auto p-3 sm:p-4">
         <InsightCardList
-          cards={savedCards}
+          cards={insights}
           isLoading={isLoading}
           error={error}
           onSaveToggle={handleSaveToggle}
