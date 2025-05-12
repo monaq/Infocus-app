@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import SavedPage from './pages/SavePage';
 import CardDetailPage from './pages/CardDetailPage';
 import GeneratePage from './pages/GeneratePage';
+import Login from './pages/Login';
 // import SettingsPage from './pages/SettingsPage'; // MVP에서는 생략
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/saved" element={<SavedPage />} />
           <Route path="/card/:id" element={<CardDetailPage />} />
           <Route path="/generate" element={<GeneratePage />} />
+          <Route path="/login" element={<Login />} />
           {/* <Route path="/settings" element={<SettingsPage />} /> */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
