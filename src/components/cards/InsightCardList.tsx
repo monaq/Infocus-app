@@ -1,6 +1,6 @@
 // src/components/cards/InsightCardList.tsx
 import React from 'react';
-import { Card as InsightCardData } from '@/types/card';
+import { InsightCardData } from '@/types/card';
 import InsightCard from './InsightCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import AppHeader from '@/components/layout/AppHeader';
 import InsightCardList from '@/components/cards/InsightCardList';
-import { Card as InsightCardData } from '@/types/card';
+import { InsightCardData } from '@/types/card';
 import Button from '@/components/common/Button';
 import { useNavigate } from 'react-router-dom';
 import data from '@/mocks/mock_cards.json'

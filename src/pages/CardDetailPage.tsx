@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AppHeader from '@/components/layout/AppHeader';
 import InsightCard from '@/components/cards/InsightCard';
-import { Card as InsightCardData } from '@/types/card';
+import { InsightCardData } from '@/types/card';
 import Button from '@/components/common/Button';
 import { ArrowLeft } from 'lucide-react';
-import data from '@/mocks/mock_cards.json'
+import { supabase, fromSupabaseToInsightCardData } from '@/services/supabaseClient';
 
 const getSavedCardIdsFromStorage = (): string[] => JSON.parse(localStorage.getItem('savedInfocusCardIds') || '[]');
 const toggleSaveCardInStorage = (cardId: string, currentIsSaved: boolean): void => { /* ... */
@@ -17,12 +17,36 @@ const toggleSaveCardInStorage = (cardId: string, currentIsSaved: boolean): void 
     window.dispatchEvent(new Event('storage'));
 };
 const getTempGeneratedCards = (): InsightCardData[] => (window as any).tempGeneratedCards || [];
-const fetchCardByIdFromAllSources = async (id: string): Promise<InsightCardData | null> => { /* ... */
+const fetchCardByIdFromAllSources = async (id: string): Promise<InsightCardData | null> => {
+    // 먼저 임시 생성된 카드에서 확인
     const tempGenerated = getTempGeneratedCards();
     let card = tempGenerated.find(c => c.id === id) || null;
-    if (!card) card = data.find(c => c.id === id) || null;
-    if (card) { const savedIds = getSavedCardIdsFromStorage(); card.isSaved = savedIds.includes(card.id); }
-    return new Promise(resolve => setTimeout(() => resolve(card), 100));
+
+    // 임시 카드에서 찾지 못한 경우 Supabase에서 조회
+    if (!card) {
+        const { data: supabaseData, error } = await supabase
+            .from('insights')
+            .select('*')
+            .eq('id', id)
+            .single();
+
+        if (error) {
+            console.error('Supabase 데이터 조회 실패:', error);
+            return null;
+        }
+
+        if (supabaseData) {
+            card = fromSupabaseToInsightCardData(supabaseData);
+        }
+    }
+
+    // 저장 상태 설정
+    if (card) {
+        const savedIds = getSavedCardIdsFromStorage();
+        card.isSaved = savedIds.includes(card.id);
+    }
+
+    return card;
 };
 
 

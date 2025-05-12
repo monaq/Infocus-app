@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import AppHeader from '../components/layout/AppHeader';
 import Button from '../components/common/Button';
 import InsightCard from '../components/cards/InsightCard';
-import { Card as InsightCardData } from '../types/card';
+import { InsightCardData } from '../types/card';
 import { useNavigate } from 'react-router-dom';
 
 // ... (OpenAI API 호출 함수, 로컬 스토리지 헬퍼, 임시 카드 저장 로직은 이전과 동일) ...

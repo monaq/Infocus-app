@@ -1,4 +1,4 @@
-export type Card = {
+export type InsightCardData = {
   id: string;
   title: string;
   source?: string;

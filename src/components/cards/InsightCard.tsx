@@ -1,6 +1,6 @@
 // src/components/cards/InsightCard.tsx
 import React from 'react';
-import { Card as InsightCardData } from '@/types/card';
+import { InsightCardData } from '@/types/card';
 import TagChip from '@/components/common/TagChip';
 import IconButton from '@/components/common/IconButton';
 import { Bookmark, Share2, ExternalLink } from 'lucide-react';
